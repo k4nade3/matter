@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>liz</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+    }
+
+    .button-start, .button-rules {
+      position: absolute;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .button-start {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .button-rules {
+      left: 50%;
+      top: 66%;
+      transform: translate(-50%, -50%);
+    }
+
+    .button-start img:hover,
+    .button-rules img:hover {
+      transform: scale(1.1);
+    }
+
+    #rules {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+
+    .rules-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .rules-image {
+      width: 1000px;
+    }
+
+    .close-x {
+      position: absolute;
+      top: 27px;
+      right: 150px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .close-x img {
+      width: 190px;
+      transition: transform 0.2s ease;
+    }
+
+    .close-x img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Playlist Container */
+    .playlist-container {
+      display: none;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Semua gambar */
+    .playlist-container img {
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    /* DISC muter */
+    #discImage {
+      top: 105px;
+      left: 2%;
+      transform: translateX(-50%);
+      width: 365px;
+      animation: spin 3s linear infinite;
+      cursor: default;
+    }
+
+    /* DISABLE hover zoom disc */
+    #discImage:hover {
+      transform: translateX(-50%);
+    }
+
+    /* Playlist positions */
+    #herPlaylist {
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 270px;
+    }
+
+    #paradisePlaylist {
+      top: 250px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 270px;
+    }
+
+    /* Hover: zoom hanya untuk playlist */
+    #herPlaylist:hover,
+    #paradisePlaylist:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    /* Animasi muter */
+    @keyframes spin {
+      0% { transform: translateX(-50%) rotate(0deg); }
+      100% { transform: translateX(-50%) rotate(360deg); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Start and Rules Buttons -->
+  <button class="button-start" id="startb" onclick="startgame()">
+    <img src="startb.png" alt="start" width="260">
+  </button>
+
+  <button class="button-rules" id="rulesb-btn" onclick="showRules()">
+    <img src="rulesb.png" alt="rules" width="260">
+  </button>
+
+  <!-- Rules Modal -->
+  <div id="rules">
+    <div class="rules-container">
+      <img class="rules-image" src="rulesm.png" alt="rules">
+      <button class="close-x" onclick="hideRules()">
+        <img src="x.png" alt="close">
+      </button>
+    </div>
+  </div>
+
+  <!-- Playlist & Disc -->
+  <div id="playlistContainer" class="playlist-container">
+    <img src="disc.png" alt="disc" id="discImage">
+    <img src="her.png" alt="her playlist" id="herPlaylist">
+    <img src="paradise.png" alt="paradise playlist" id="paradisePlaylist">
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function showRules() {
+      document.getElementById("rules").style.display = "block";
+    }
+
+    function hideRules() {
+      document.getElementById("rules").style.display = "none";
+    }
+
+    function startgame() {
+      document.getElementById("startb").style.display = "none";
+      document.getElementById("rulesb-btn").style.display = "none";
+      document.getElementById("playlistContainer").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
