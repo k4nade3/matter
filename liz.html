@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>liz</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #F1E7E7;
+    }
+
+    .button-start, .button-rules {
+      position: absolute;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .button-start {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .button-rules {
+      left: 50%;
+      top: 66%;
+      transform: translate(-50%, -50%);
+    }
+
+    .button-start img:hover,
+    .button-rules img:hover {
+      transform: scale(1.1);
+    }
+
+    #rules {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+
+    .rules-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .rules-image {
+      width: 1000px;
+    }
+
+    .close-x {
+      position: absolute;
+      top: 27px;
+      right: 150px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .close-x img {
+      width: 130px;
+      transition: transform 0.2s ease;
+    }
+
+    .close-x img:hover {
+      transform: scale(1.1);
+    }
+
+    .playlist-container {
+      display: none;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .playlist-container img {
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #discImage {
+      top: 105px;
+      left: 2%;
+      transform: translateX(-50%);
+      width: 365px;
+      animation: spin 3s linear infinite;
+      cursor: default;
+    }
+
+    #discImage:hover {
+      transform: translateX(-50%);
+    }
+
+    #herPlaylist {
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 270px;
+    }
+
+    #paradisePlaylist {
+      top: 250px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 270px;
+    }
+
+    #herPlaylist:hover,
+    #paradisePlaylist:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    @keyframes spin {
+      0% { transform: translateX(-50%) rotate(0deg); }
+      100% { transform: translateX(-50%) rotate(360deg); }
+    }
+
+    .song-container {
+      display: none;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .song-container img,
+    .newjeans-container img {
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      width: 300px;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: brightness(1);
+    }
+
+    #obsessive { top: 50px; width: 630px; }
+    #swim { top: calc(150px + 3vh); width: 630px; }
+    #angels { top: calc(250px + 6vh); width: 630px; }
+    #moonlight { top: calc(350px + 10vh); width: 630px; }
+    #falling { top: calc(450px + 14vh); width: 630px; }
+
+    .newjeans-container {
+      display: none;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .newjeans-container img {
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      width: 300px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #omg { top: 50px; width: 630px; }
+    #ditto { top: calc(150px + 3vh); width: 630px; }
+    #supernatural { top: calc(250px + 6vh); width: 630px; }
+    #zero { top: calc(350px + 10vh); width: 630px; }
+    #rightnow { top: calc(450px + 14vh); width: 630px; }
+
+    .song-container img:hover,
+    .newjeans-container img:hover {
+      filter: brightness(0.6);
+    }
+
+    .yungkai-container {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: transparent;
+      z-index: 1000;
+      text-align: center;
+    }
+#yung_kai {
+  display: block;
+  margin: 20px auto;
+  width: 750px;
+}
+    #wildflower, #blue, #my_light {
+      display: block;
+      margin: 20px auto;
+      width: 500px;
+    }
+
+    /* hover untuk semua kecuali yung_kai */
+    .yungkai-container img:hover {
+      filter: brightness(0.6);
+      cursor: pointer;
+    }
+    #yung_kai {
+      cursor: default;
+    }
+    #yung_kai:hover {
+      filter: brightness(1);
+    }
+
+    .wifty-container {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 1000;
+  text-align: center;
+}
+
+#wifty {
+  display: block;
+  margin: 0 auto 100px auto; /* biar ketengah */
+  width: 850px;
+}
+
+#zaizai, #rangrang, #guran {
+      display: block;
+      margin: 20px auto;
+      width: 500px;
+    }
+
+    /* hover untuk semua kecuali wifty */
+    .wifty-container img:hover {
+      filter: brightness(0.6);
+      cursor: pointer;
+    }
+    #wifty {
+      cursor: default;
+    }
+    #wifty:hover {
+      filter: brightness(1);
+    }
+
+     .sea-container {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: transparent;
+      z-index: 1000;
+      text-align: center;
+    }
+#sea {
+  display: block;
+  margin: 0 auto 100px auto; /* atas 0, kanan auto, bawah 100px, kiri auto */
+  width: 850px;
+}
+
+    #whale, #nautilus, #narwhal {
+      display: block;
+      margin: 20px auto;
+      width: 500px;
+    }
+
+    /* hover untuk semua kecuali yung_kai */
+    .sea-container img:hover {
+      filter: brightness(0.6);
+      cursor: pointer;
+    }
+    #sea {
+      cursor: default;
+    }
+    #sea:hover {
+      filter: brightness(1);
+    } 
+
+  .flower-container {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: transparent;
+      z-index: 1000;
+      text-align: center;
+    }
+#flower {
+  display: block;
+  margin: 0 auto 100px auto; /* atas 0, kanan auto, bawah 100px, kiri auto */
+  width: 950px;
+}
+
+    #hibicus, #lily, #iris {
+      display: block;
+      margin: 20px auto;
+      width: 500px;
+    }
+
+    /* hover untuk semua kecuali yung_kai */
+    .flower-container img:hover {
+      filter: brightness(0.6);
+      cursor: pointer;
+    }
+    #flower {
+      cursor: default;
+    }
+    #flower:hover {
+      filter: brightness(1);
+    } 
+
+      .coral-container {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: transparent;
+      z-index: 1000;
+      text-align: center;
+    }
+#coral {
+  display: block;
+  margin: 0 auto 100px auto; /* atas 0, kanan auto, bawah 100px, kiri auto */
+  width: 950px;
+}
+
+    #ellisella, #montastraea, #diploria {
+      display: block;
+      margin: 20px auto;
+      width: 500px;
+    }
+
+    /* hover untuk semua kecuali yung_kai */
+    .coral-container img:hover {
+      filter: brightness(0.6);
+      cursor: pointer;
+    }
+    #coral {
+      cursor: default;
+    }
+    #coral:hover {
+      filter: brightness(1);
+    } 
+
+/* back button */
+#backBtnYungkai, 
+#backBtnWifty,
+#backBtnFlower,
+#backBtnSea,
+#backBtnCoral {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2000; /* biar ga ketiban gambar */
+}
+
+#backBtnYungkai img, 
+#backBtnWifty img,
+#backBtnFlower img,
+#backBtnSea img,
+#backBtnCoral img
+{
+  width: 50px;   /* atur sesuai besar icon */
+  height: auto;
+}
+
+    /* back button */
+    #backBtn {
+      transition: transform 0.2s ease;
+    }
+    #backBtn img {
+      width: 120px;
+    }
+    #backBtn:hover {
+      transform: scale(1.1);
+    }
+
+    /* overlay baru (tanpa bg hitam) */
+    #overlayImage {
+      display: none;
+      position: fixed;
+      top:0; left:0;
+      width:100vw; height:100vh;
+      background:transparent;
+      z-index:2000;
+      justify-content:center;
+      align-items:center;
+    }
+    #overlayImage img {
+      max-width:600px;
+      max-height:90vh;
+      cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="button-start" id="startb" onclick="startgame()">
+    <img src="startb.png" alt="start" width="260">
+  </button>
+
+  <button class="button-rules" id="rulesb-btn" onclick="showRules()">
+    <img src="rulesb.png" alt="rules" width="260">
+  </button>
+
+  <!-- Rules Modal -->
+  <div id="rules">
+    <div class="rules-container">
+      <img class="rules-image" src="rulesm.png" alt="rules">
+      <button class="close-x" onclick="hideRules()">
+        <img src="x.png" alt="close">
+      </button>
+    </div>
+  </div>
+
+  <!-- Playlist & Disc -->
+  <div id="playlistContainer" class="playlist-container">
+    <img src="disc.png" alt="disc" id="discImage">
+    <img src="her.png" alt="her playlist" id="herPlaylist" onclick="showHer()">
+    <img src="paradise.png" alt="paradise playlist" id="paradisePlaylist" onclick="showParadise()">
+  </div>
+
+  <!-- Songs -->
+  <div id="songContainer" class="song-container">
+    <img src="hs1.png" alt="score 1" id="obsessive">
+    <img src="hs2.png" alt="score 2" id="swim">
+    <img src="hs3.png" alt="score 3" id="angels">
+    <img src="hs4.png" alt="score 4" id="moonlight">
+    <img src="hs5.png" alt="score 5" id="falling">
+  </div>
+
+  <!-- NewJeans -->
+  <div id="newjeansContainer" class="newjeans-container">
+    <img src="ps1.png" alt="score 1" id="omg">
+    <img src="ps2.png" alt="score 2" id="ditto">
+    <img src="ps3.png" alt="score 3" id="supernatural">
+    <img src="ps4.png" alt="score 4" id="zero">
+    <img src="ps5.png" alt="score 5" id="rightnow">
+  </div>
+
+  <div id="yungkaiContainer" class="yungkai-container">
+  <button id="backBtnYungkai"><img src="back.png" alt="back"></button>
+  <img src="yung_kai.png" alt="yung kai" id="yung_kai">
+  <img src="wildflower.png" alt="wildflower" id="wildflower">
+  <img src="blue.png" alt="blue" id="blue">
+  <img src="my_light.png" alt="my light" id="my_light">
+</div>
+
+<!-- Wifty -->
+<div id="wiftyContainer" class="wifty-container">
+  <button id="backBtnWifty"><img src="back.png" alt="back"></button>
+  <img src="wifty.png" alt="wifty" id="wifty">
+  <img src="zaizai.png" alt="zaizai" id="zaizai">
+  <img src="rangrang.png" alt="rangrang" id="rangrang">
+  <img src="guran.png" alt="guran" id="guran">
+</div>
+
+<!-- flower -->
+<div id="flowerContainer" class="flower-container">
+  <img src="flower.png" alt="flower" id="flower">
+  <button id="backBtnFlower"><img src="back.png" alt="back"></button>
+  <img src="hibicus.png" alt="hibicus" id="hibicus">
+  <img src="lily.png" alt="lily" id="lily">
+  <img src="iris.png" alt="iris" id="iris">
+</div>
+
+<!-- sea -->
+<div id="seaContainer" class="sea-container">
+  <img src="sea.png" alt="sea" id="sea">
+  <button id="backBtnSea"><img src="back.png" alt="back"></button>
+  <img src="whale.png" alt="whale" id="whale">
+  <img src="nautilus.png" alt="nautilus" id="nautilus">
+  <img src="narwhal.png" alt="narwhal" id="narwhal">
+</div>
+
+<!-- coral -->
+<div id="coralContainer" class="coral-container">
+  <img src="coral.png" alt="coral" id="coral">
+  <button id="backBtnCoral"><img src="back.png" alt="back"></button>
+  <img src="ellisella.png" alt="ellisella" id="ellisella">
+  <img src="montastraea.png" alt="montastraea" id="montastraea">
+  <img src="diploria.png" alt="diploria" id="diploria">
+</div>
+
+  <!-- Overlay -->
+  <div id="overlayImage">
+    <img id="overlayImgTag" src="" alt="overlay">
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function showRules() {
+      document.getElementById("rules").style.display = "block";
+    }
+    function hideRules() {
+      document.getElementById("rules").style.display = "none";
+    }
+    function startgame() {
+      document.getElementById("startb").style.display = "none";
+      document.getElementById("rulesb-btn").style.display = "none";
+      document.getElementById("playlistContainer").style.display = "block";
+    }
+    function showHer() {
+      document.getElementById("playlistContainer").style.display = "none";
+      document.getElementById("songContainer").style.display = "block";
+      document.getElementById("newjeansContainer").style.display = "none";
+    }
+    function showParadise() {
+      document.getElementById("playlistContainer").style.display = "none";
+      document.getElementById("songContainer").style.display = "none";
+      document.getElementById("newjeansContainer").style.display = "block";
+    }
+
+    function showOverlay(src) {
+      const overlay = document.getElementById("overlayImage");
+      const overlayImg = document.getElementById("overlayImgTag");
+      overlayImg.src = src;
+      overlay.style.display = "flex";
+    }
+    function hideOverlay() {
+      document.getElementById("overlayImage").style.display = "none";
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+  // Obsessed click → show Yungkai container
+  document.getElementById('obsessive').addEventListener('click', function() {
+    document.getElementById('songContainer').style.display = 'none';
+    document.getElementById('yungkaiContainer').style.display = 'block';
+  });
+
+  // Swim click → show Wifty container
+  document.getElementById('swim').addEventListener('click', function() {
+    document.getElementById('songContainer').style.display = 'none';
+    document.getElementById('wiftyContainer').style.display = 'block';
+  });
+
+  // angels click → show flower container
+  document.getElementById('angels').addEventListener('click', function() {
+    document.getElementById('songContainer').style.display = 'none';
+    document.getElementById('flowerContainer').style.display = 'block';
+  });
+
+  
+  // moonlight click → show sea container
+  document.getElementById('moonlight').addEventListener('click', function() {
+    document.getElementById('songContainer').style.display = 'none';
+    document.getElementById('seaContainer').style.display = 'block';
+  });
+
+    // falling click → show coral container
+  document.getElementById('falling').addEventListener('click', function() {
+    document.getElementById('songContainer').style.display = 'none';
+    document.getElementById('coralContainer').style.display = 'block';
+  });
+
+  // Back buttons
+  document.getElementById('backBtnYungkai').addEventListener('click', function() {
+    document.getElementById('yungkaiContainer').style.display = 'none';
+    document.getElementById('songContainer').style.display = 'block';
+  });
+  document.getElementById('backBtnWifty').addEventListener('click', function() {
+    document.getElementById('wiftyContainer').style.display = 'none';
+    document.getElementById('songContainer').style.display = 'block';
+  });
+  document.getElementById('backBtnFlower').addEventListener('click', function() {
+    document.getElementById('flowerContainer').style.display = 'none';
+    document.getElementById('songContainer').style.display = 'block';
+  });
+  document.getElementById('backBtnSea').addEventListener('click', function() {
+    document.getElementById('seaContainer').style.display = 'none';
+    document.getElementById('songContainer').style.display = 'block';
+  });
+  document.getElementById('backBtnCoral').addEventListener('click', function() {
+    document.getElementById('coralContainer').style.display = 'none';
+    document.getElementById('songContainer').style.display = 'block';
+  });
+
+  // Click maps Yungkai
+  const yungkaiMap = {
+    wildflower: 'loopy.png',
+    blue: 'mad.png',
+    my_light: 'mad.png'
+  };
+  Object.keys(yungkaiMap).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => showOverlay(yungkaiMap[id]));
+  });
+
+  // Click maps Wifty
+  const wiftyMap = {
+    zaizai: 'mad.png',
+    rangrang: 'mad.png',
+    guran: 'loopy.png'
+  };
+  Object.keys(wiftyMap).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => showOverlay(wiftyMap[id]));
+  });
+
+    // Click maps flower
+  const flowerMap = {
+    hibicus: 'loopy.png',
+    lily: 'mad.png',
+    iris: 'mad.png'
+  };
+  Object.keys(flowerMap).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => showOverlay(flowerMap[id]));
+  });
+
+    // Click maps Wifty
+  const seaMap = {
+    whale: 'mad.png',
+    nautilus: 'loopy.png',
+    narwhal: 'mad.png'
+  };
+  Object.keys(seaMap).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => showOverlay(seaMap[id]));
+  });
+
+    // Click maps Wifty
+  const coralMap = {
+    ellisella: 'mad.png',
+    montastraea: 'mad.png',
+    diploria: 'loopy.png'
+  };
+  Object.keys(coralMap).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => showOverlay(coralMap[id]));
+  });
+
+
+  // Overlay click → close
+  document.getElementById("overlayImage").addEventListener('click', hideOverlay);
+});
+  </script>
+
+</body>
+</html>
